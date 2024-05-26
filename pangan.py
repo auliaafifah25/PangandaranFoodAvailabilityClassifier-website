@@ -2,11 +2,12 @@ import streamlit as st
 import pickle
 import pandas as pd
 import logging
+from sklearn.ensemble import RandomForestClassifier
+
 logging.basicConfig(level=logging.INFO)
 
 #create a function to preprocess the data
 def main():
-    
     # Set page title
     st.set_page_config(page_title='Prediksi Ketersediaan Pangan di Kabupaten Pangandaran')
     # Set heading
@@ -56,7 +57,11 @@ def main():
     logging.info(f"Input DataFrame: {input_df}")
     
     # Load the trained model
-    model = pickle.load(open('pangan.pkl', 'rb'))
+    try:
+        model = pickle.load(open('pangan.pkl', 'rb'))
+    except Exception as e:
+        st.error(f"Error loading the model: {e}")
+        return
     
     # Display the prediction title
     st.markdown('<h1 style="text-align: center; color: brown;">Prediksi Ketersediaan Pangan di Kabupaten Pangandaran</h1>', unsafe_allow_html=True)
