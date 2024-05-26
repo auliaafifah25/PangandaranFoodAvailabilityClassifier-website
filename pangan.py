@@ -2,7 +2,6 @@ import streamlit as st
 import pickle
 import pandas as pd
 import logging
-from sklearn.ensemble import RandomForestClassifier
 
 logging.basicConfig(level=logging.INFO)
 
